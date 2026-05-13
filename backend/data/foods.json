@@ -1,0 +1,16 @@
+{
+  "vitamin_a": ["carrots", "sweet potato", "spinach", "kale", "egg yolk"],
+  "vitamin_b": ["whole grains", "legumes", "eggs", "fish", "lean meat"],
+  "vitamin_b12": ["beef", "clams", "tuna", "salmon", "milk", "eggs"],
+  "vitamin_c": ["orange", "lemon", "guava", "bell pepper", "broccoli"],
+  "vitamin_d": ["fatty fish", "cod liver oil", "egg yolks", "fortified milk", "mushrooms"],
+  "vitamin_e": ["sunflower seeds", "almonds", "spinach", "kiwi", "broccoli"],
+  "vitamin_k": ["kale", "spinach", "broccoli", "brussels sprouts", "cabbage"],
+  "iron": ["red meat", "lentils", "spinach", "beans", "pumpkin seeds"],
+  "zinc": ["oysters", "chickpeas", "pumpkin seeds", "cashews", "yogurt"],
+  "calcium": ["milk", "cheese", "yogurt", "tofu", "sardines"],
+  "iodine": ["iodized salt", "seaweed", "eggs", "cod", "milk"],
+  "magnesium": ["pumpkin seeds", "spinach", "almonds", "black beans", "avocado"],
+  "potassium": ["bananas", "potatoes", "spinach", "watermelon", "white beans"],
+  "selenium": ["brazil nuts", "fish", "eggs", "brown rice", "sunflower seeds"]
+}
