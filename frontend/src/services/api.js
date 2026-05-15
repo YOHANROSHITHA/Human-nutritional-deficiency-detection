@@ -32,9 +32,4 @@ export const registerUser = async ({ name, email, password }) => {
   return response.data;
 };
 
-export const sendReportByEmail = async ({ email, result }) => {
-  const response = await api.post('/send-report', { email, result });
-  return response.data;
-};
-
 export default api;

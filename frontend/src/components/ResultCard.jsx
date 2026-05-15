@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { sendReportByEmail } from '../services/api';
 import { getAuth } from '../utils/auth';
 
 const ResultCard = ({ result }) => {
-  const [emailLoading, setEmailLoading] = useState(false);
-  const [emailSent, setEmailSent] = useState(false);
   const [error, setError] = useState('');
 
   if (!result) return null;
@@ -18,26 +15,6 @@ const ResultCard = ({ result }) => {
     ? Math.round(confidenceValue) 
     : Math.round((confidenceValue ?? 0) * 100);
 
-  const handleSendEmail = async () => {
-    const { user, isAuthenticated } = getAuth();
-    
-    if (!isAuthenticated || !user?.email) {
-      setError('Please login first to send report to your email.');
-      return;
-    }
-
-    try {
-      setEmailLoading(true);
-      setError('');
-      await sendReportByEmail({ email: user.email, result });
-      setEmailSent(true);
-    } catch (err) {
-      console.error(err);
-      setError('Failed to send email. Ensure the backend is running.');
-    } finally {
-      setEmailLoading(false);
-    }
-  };
 
   return (
     <div className="glass-card p-6 md:p-10 border-white bg-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] relative overflow-hidden text-slate-900">
@@ -128,11 +105,6 @@ const ResultCard = ({ result }) => {
         </div>
       )}
 
-      {emailSent && (
-        <div className="mt-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-600 text-sm font-bold text-center animate-card-in">
-          ✓ Report has been sent to your registered email address!
-        </div>
-      )}
 
       {/* Footer Actions */}
       <div className="mt-10 pt-8 border-t border-slate-100 flex flex-col items-center gap-8">
@@ -140,7 +112,7 @@ const ResultCard = ({ result }) => {
           Disclaimer: This AI-generated assessment is for educational purposes only. Always consult a healthcare professional for clinical decisions.
         </p>
         
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-xl">
           <Link
             to={result.type === 'text' ? '/symptom-check' : '/image-check'}
             className="btn-secondary h-16 text-sm group flex items-center justify-center"
@@ -150,32 +122,6 @@ const ResultCard = ({ result }) => {
             </svg>
             {result.type === 'text' ? 'New Symptoms' : 'New Scan'}
           </Link>
-
-          <button
-            onClick={handleSendEmail}
-            disabled={emailLoading || emailSent}
-            className={`h-16 rounded-2xl border-2 flex items-center justify-center text-sm font-bold transition-all ${
-              emailSent 
-                ? 'bg-emerald-500 border-emerald-500 text-white cursor-default'
-                : 'border-primary-500 text-primary-700 hover:bg-primary-50 active:scale-95'
-            }`}
-          >
-            {emailLoading ? (
-              <span className="flex items-center">
-                <div className="w-4 h-4 border-2 border-primary-700/20 border-t-primary-700 rounded-full animate-spin mr-2" />
-                Sending...
-              </span>
-            ) : emailSent ? (
-              'Sent to Email ✓'
-            ) : (
-              <span className="flex items-center">
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                Email Report
-              </span>
-            )}
-          </button>
           
           <Link
             to="/nutrition-guide"
