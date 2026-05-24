@@ -38,13 +38,28 @@ const Home = () => {
 
           <div className="mt-8 grid gap-4 sm:grid-cols-3 text-left">
             {[
-              { label: 'Deep Learning', desc: 'Xception-based Analysis' },
-              { label: 'NLP Engine', desc: 'Symptom Mapping' },
-              { label: 'Live Data', desc: '14+ Categories' }
-            ].map((stat, i) => (
-              <div key={i} className="glass-card p-4 border-slate-200 bg-white shadow-sm">
-                <p className="font-bold text-primary-600 text-sm mb-1">{stat.label}</p>
-                <p className="text-xs text-slate-500">{stat.desc}</p>
+              { 
+                label: 'AI Vision Scan', 
+                desc: 'Instant detection from photos',
+                icon: <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+              },
+              { 
+                label: 'Symptom Logic', 
+                desc: 'Smart body sign analysis',
+                icon: <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+              },
+              { 
+                label: 'Health Insights', 
+                desc: 'Tailored recovery guides',
+                icon: <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+              }
+            ].map((feature, i) => (
+              <div key={i} className="glass-card p-4 border-slate-200 bg-white/80 hover:bg-white transition-all hover:shadow-md group">
+                <div className="mb-3 p-2 w-fit rounded-lg bg-primary-50 group-hover:bg-primary-100 transition-colors">
+                  {feature.icon}
+                </div>
+                <p className="font-bold text-slate-900 text-sm mb-1">{feature.label}</p>
+                <p className="text-xs text-slate-500 font-medium">{feature.desc}</p>
               </div>
             ))}
           </div>
